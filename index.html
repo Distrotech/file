@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title>File by Distrotech</title>
+  </head>
+
+  <body>
+    <div id="container">
+      <div class="inner">
+
+        <header>
+          <h1>File</h1>
+          <h2>Read-only mirror of file CVS repository, updated nightly. NOTE: do not make pull requests here, nor comment any commits, submit them usual way to bug tracker or to the mailing list. Maintainer(s) are not tracking  this git mirror.</h2>
+        </header>
+
+        <section id="downloads" class="clearfix">
+          <a href="https://github.com/Distrotech/file/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
+          <a href="https://github.com/Distrotech/file/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
+          <a href="https://github.com/Distrotech/file" id="view-on-github" class="button"><span>View on GitHub</span></a>
+        </section>
+
+        <hr>
+
+        <section id="main_content">
+          <p>** README for file(1) Command **
+@(#) $File: README,v 1.45 2013/01/11 16:51:01 christos Exp $</p>
+
+<p>Mailing List: <a href="mailto:file@mx.gw.com">file@mx.gw.com</a>
+Mailing List archives: <a href="http://mx.gw.com/pipermail/file/">http://mx.gw.com/pipermail/file/</a>
+Bug tracker: <a href="http://bugs.gw.com/">http://bugs.gw.com/</a>
+E-mail: <a href="mailto:christos@astron.com">christos@astron.com</a></p>
+
+<p>Phone: Do not even think of telephoning me about this program. Send cash first!</p>
+
+<p>This is Release 5.x of Ian Darwin's (copyright but distributable)
+file(1) command, an implementation of the Unix File(1) command.
+It knows the 'magic number' of several thousands of file types.
+This version is the standard "file" command for Linux,
+*BSD, and other systems. (See "patchlevel.h" for the exact release number).</p>
+
+<p>You can download the latest version of file from:</p>
+
+<pre><code>ftp://ftp.astron.com/pub/file/
+</code></pre>
+
+<p>A public read-only git repository is available at:</p>
+
+<pre><code>https://github.com/glensc/file
+</code></pre>
+
+<p>The major changes for 5.x are CDF file parsing, indirect magic, and
+overhaul in mime and ascii encoding handling.</p>
+
+<p>The major feature of 4.x is the refactoring of the code into a library,
+and the re-write of the file command in terms of that library. The library
+itself, libmagic can be used by 3rd party programs that wish to identify
+file types without having to fork() and exec() file. The prime contributor
+for 4.0 was Mans Rullgard.</p>
+
+<p>UNIX is a trademark of UNIX System Laboratories.</p>
+
+<p>The prime contributor to Release 3.8 was Guy Harris, who put in megachanges
+including byte-order independence.</p>
+
+<p>The prime contributor to Release 3.0 was Christos Zoulas, who put
+in hundreds of lines of source code changes, including his own
+ANSIfication of the code (I liked my own ANSIfication better, but
+his (__P()) is the "Berkeley standard" way of doing it, and I wanted UCB
+to include the code...), his HP-like "indirection" (a feature of
+the HP file command, I think), and his mods that finally got the
+uncompress (-z) mode finished and working.</p>
+
+<p>This release has compiled in numerous environments; see PORTING
+for a list and problems.</p>
+
+<p>This fine freeware file(1) follows the USG (System V) model of the file
+command, rather than the Research (V7) version or the V7-derived 4.[23]
+Berkeley one. That is, the file /etc/magic contains much of the ritual
+information that is the source of this program's power. My version
+knows a little more magic (including tar archives) than System V; the
+/etc/magic parsing seems to be compatible with the (poorly documented)
+System V /etc/magic format (with one exception; see the man page).</p>
+
+<p>In addition, the /etc/magic file is built from a subdirectory
+for easier(?) maintenance.  I will act as a clearinghouse for
+magic numbers assigned to all sorts of data files that
+are in reasonable circulation. Send your magic numbers,
+in magic(5) format please, to the maintainer, Christos Zoulas.</p>
+
+<p>COPYING - read this first.
+README - read this second (you are currently reading this file).
+INSTALL - read on how to install</p>
+
+<p>src/apprentice.c - parses /etc/magic to learn magic
+src/apptype.c - used for OS/2 specific application type magic
+src/asprintf.c - replacement for OS's that don't have it.
+src/ascmagic.c - third &amp; last set of tests, based on hardwired assumptions.
+src/asctime_r.c - for systems that don't have it.
+src/asprintf.c - for systems that don't have it.
+src/cdf.c - parser for Microsoft Compound Document Files
+src/cdf_time.c - time converter for CDF.
+src/compress.c - handles decompressing files to look inside.
+src/ctime_r.c - for systems that don't have it.
+src/encoding.c - handles unicode encodings
+src/file.c - the main program
+src/file.h - header file
+src/fsmagic.c - first set of tests the program runs, based on filesystem info
+src/funcs.c - utilility functions
+src/getopt_long.c - for systems that don't have it.
+src/getline.c - for systems that don't have it.
+src/is_tar.c, tar.h - knows about tarchives (courtesy John Gilmore).
+src/names.h - header file for ascmagic.c
+src/magic.c - the libmagic api
+src/print.c - print results, errors, warnings.
+src/readcdf.c - CDF wrapper.
+src/readelf.[ch] - Stand-alone elf parsing code.
+src/softmagic.c - 2nd set of tests, based on /etc/magic
+src/strlcat.c - for systems that don't have it.
+src/strlcpy.c - for systems that don't have it.
+src/vasprintf.c - for systems that don't have it.
+doc/file.man - man page for the command
+doc/magic.man - man page for the magic file, courtesy Guy Harris.
+    Install as magic.4 on USG and magic.5 on V7 or Berkeley; cf Makefile.</p>
+
+<h2>
+<a name="magdir---directory-of-etcmagic-pieces" class="anchor" href="#magdir---directory-of-etcmagic-pieces"><span class="octicon octicon-link"></span></a>Magdir - directory of /etc/magic pieces</h2>
+
+<p>If you submit a new magic entry please make sure you read the following
+guidelines:</p>
+
+<ul>
+<li>Initial match is preferably at least 32 bits long, and is a <em>unique</em> match</li>
+<li>If this is not feasible, use additional check</li>
+<li>Match of &lt;= 16 bits are not accepted</li>
+<li>Delay printing string as much as possible, don't print output too early</li>
+<li><p>Avoid printf arbitrary byte as string, which can be a source of
+crash and buffer overflow</p></li>
+<li>
+<p>Provide complete information with entry:</p>
+
+<ul>
+<li>One line short summary</li>
+<li>Optional long description</li>
+<li>File extension, if applicable</li>
+<li>Full name and contact method (for discussion when entry has problem)</li>
+<li>Further reference, such as documentation of format</li>
+</ul>
+</li>
+</ul><hr><p>Parts of this software were developed at SoftQuad Inc., developers
+of SGML/HTML/XML publishing software, in Toronto, Canada.
+SoftQuad was swallowed up by Corel in 2002 and does not exist any longer.</p>
+        </section>
+
+        <footer>
+          File is maintained by <a href="https://github.com/Distrotech">Distrotech</a><br>
+          This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="http://twitter.com/jasonlong">Jason Long</a>.
+        </footer>
+
+        
+      </div>
+    </div>
+  </body>
+</html>
